@@ -16,7 +16,6 @@ import android.graphics.Typeface
 import android.view.Gravity
 import android.view.ViewGroup
 import kotlin.math.max
-import kotlin.math.min
 
 class KeyboardCanvasView(context: Context) : View(context) {
     interface Listener {
@@ -34,7 +33,6 @@ class KeyboardCanvasView(context: Context) : View(context) {
             invalidate()
         }
 
-    private val backgroundPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = Color.rgb(18, 18, 18) }
     private val keyPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = Color.rgb(30, 30, 30) }
     private val functionPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = Color.rgb(44, 44, 44) }
     private val textPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
@@ -47,7 +45,6 @@ class KeyboardCanvasView(context: Context) : View(context) {
         textAlign = Paint.Align.CENTER
         textSize = dp(9f)
     }
-    private val rect = RectF()
     private val handler = Handler(Looper.getMainLooper())
     private var activeKey: KeySpec? = null
     private var downX = 0f
@@ -67,7 +64,6 @@ class KeyboardCanvasView(context: Context) : View(context) {
     init {
         isFocusable = true
         isFocusableInTouchMode = true
-        setLayerType(View.LAYER_TYPE_SOFTWARE, null)
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
@@ -250,7 +246,14 @@ class KeyboardCanvasView(context: Context) : View(context) {
         popup?.dismiss()
         popup = PopupWindow(container, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true).apply {
             elevation = dp(8f)
-            showAtLocation(this@KeyboardCanvasView, Gravity.TOP or Gravity.START, (downX - dp(30f)).toInt().coerceAtLeast(0), (downY - dp(65f)).toInt().coerceAtLeast(0))
+            val location = IntArray(2)
+            this@KeyboardCanvasView.getLocationOnScreen(location)
+            showAtLocation(
+                this@KeyboardCanvasView,
+                Gravity.TOP or Gravity.START,
+                (location[0] + downX - dp(30f)).toInt().coerceAtLeast(0),
+                (location[1] + downY - dp(65f)).toInt().coerceAtLeast(0)
+            )
         }
     }
 
