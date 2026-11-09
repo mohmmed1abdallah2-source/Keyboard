@@ -145,7 +145,7 @@ class KeyboardCanvasView(context: Context) : View(context) {
                         val steps = (delta / dp(8f)).toInt()
                         if (steps != 0) {
                             listener?.onCursorMove(steps)
-                            performHapticFeedback(HapticFeedbackConstants.TEXT_HANDLE_MOVE)
+                            performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
                             lastCursorX += steps * dp(8f)
                         }
                     }
