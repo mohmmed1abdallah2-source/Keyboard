@@ -62,7 +62,14 @@ class MainActivity : Activity() {
         root.addView(description, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
         root.addView(enableButton, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
         root.addView(chooseButton, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-        root.addView(testInput, LinearLayout.LayoutParams.MATCH_PARENT, 0, 1f)
+        root.addView(
+            testInput,
+            LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                0,
+                1f
+            )
+        )
         setContentView(root)
     }
 }
