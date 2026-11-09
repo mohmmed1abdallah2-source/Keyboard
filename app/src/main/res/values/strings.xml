@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Jets Keyboard</string>
+    <string name="keyboard_arabic">العربية</string>
+    <string name="keyboard_english">English</string>
+    <string name="ime_description">لوحة مفاتيح خفيفة تعمل دون اتصال</string>
+</resources>
