@@ -24,11 +24,11 @@ The app module, manifest/IME declaration, programmatic setup activity, Canvas vi
 |---|---|
 | Repository bootstrap | Completed |
 | Feature branch creation | Completed |
-| Source implementation | In progress |
-| Gradle build | Not yet run |
-| APK artifact | Not yet produced |
+| Source implementation | Completed on feature branch |
+| Gradle build | Triggered by GitHub Actions; latest run pending verification |
+| APK artifact | Not yet verified or downloaded |
 
-## Engineering notes
+## Stage 1 implementation record\n- Added root Gradle settings, root plugin declarations, module Gradle configuration, and JVM/AndroidX properties.\n- Added GitHub Actions workflow with JDK 17, Android SDK platform/build-tools installation, Gradle 8.9 provisioning, conditional wrapper generation, `assembleDebug`, and APK artifact upload.\n- Added the IME service declaration and Arabic/English subtypes.\n- Added programmatic setup activity with enable/picker actions and an editable test field.\n- Added four keyboard modes (Arabic, English lowercase, English uppercase, and symbols with Western and Arabic-Indic digits).\n- Added Canvas key rendering, sublabels, long-press alternates, accelerating repeat delete, horizontal spacebar cursor movement, and haptic feedback.\n- Added popup positioning relative to the keyboard view and retained hardware-accelerated Canvas rendering.\n\n## Engineering notes
 - The keyboard UI is drawn with Android Canvas and Paint; no Compose or Button widgets are used.
 - MainActivity is built programmatically and includes the two IME setup actions and a text field.
 - The keyboard performs input locally and declares no network permission.
